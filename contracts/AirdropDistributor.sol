@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity 0.8.19;
+pragma solidity >=0.8.0;
 
 import {IAero} from "./interfaces/IAero.sol";
 import {IVotingEscrow} from "./interfaces/IVotingEscrow.sol";
