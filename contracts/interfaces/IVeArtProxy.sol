@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity ^0.8.0;
+pragma solidity >=0.8.0;
 
 interface IVeArtProxy {
     /// @dev Art configuration
@@ -10,23 +10,23 @@ interface IVeArtProxy {
         int256 _lockedEnd;
         int256 _lockedAmount;
         // Line art variables
-        int256 shape;
+        int32 shape;
         uint256 palette;
         int256 maxLines;
         int256 dash;
         // Randomness variables
-        int256 seed1;
-        int256 seed2;
-        int256 seed3;
+        int128 seed1;
+        int128 seed2;
+        int128 seed3;
     }
 
     /// @dev Individual line art path variables.
     struct lineConfig {
         string color;
-        uint256 stroke;
-        uint256 offset;
-        uint256 offsetHalf;
-        uint256 offsetDashSum;
+        uint32 stroke;
+        uint32 offset;
+        uint32 offsetHalf;
+        uint32 offsetDashSum;
         uint256 pathLength;
     }
 
@@ -61,7 +61,7 @@ interface IVeArtProxy {
     /// @param cfg Master art config metadata of a veNFT
     /// @param l Number of circles drawn
     /// @return Line (x, y) coordinates of the drawn circles
-    function circles(Config memory cfg, int256 l) external pure returns (Point[100] memory Line);
+    function circles(Config memory cfg, int64 l) external pure returns (Point[100] memory Line);
 
     /// @notice Generate the points for interlocking circles based on the config generated for a veNFT
     /// @param cfg Master art config metadata of a veNFT
@@ -73,7 +73,7 @@ interface IVeArtProxy {
     /// @param cfg Master art config metadata of a veNFT
     /// @param l Number of corners drawn
     /// @return Line (x, y) coordinates of the drawn corners
-    function corners(Config memory cfg, int256 l) external pure returns (Point[100] memory Line);
+    function corners(Config memory cfg, int32 l) external pure returns (Point[100] memory Line);
 
     /// @notice Generate the points for a curve based on the config generated for a veNFT
     /// @param cfg Master art config metadata of a veNFT

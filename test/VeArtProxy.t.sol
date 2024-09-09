@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity 0.8.19;
+pragma solidity >=0.8.0;
 
 import "./BaseTest.sol";
 
@@ -34,9 +34,9 @@ contract VeArtProxyTest is BaseTest {
         seed3 = bound(seed3, 1, 999);
 
         cfg.maxLines = int256(lineCount);
-        cfg.seed1 = int256(seed1);
-        cfg.seed2 = int256(seed2);
-        cfg.seed3 = int256(seed3);
+        cfg.seed1 = int128(int256(seed1));
+        cfg.seed2 = int128(int256(seed2));
+        cfg.seed3 = int128(int256(seed3));
     }
 
     function testFuzz_drawTwoStripes(uint256 lineCount, uint256 seed1, uint256 seed2, uint256 seed3) external {
@@ -62,7 +62,7 @@ contract VeArtProxyTest is BaseTest {
         bool lineAppears;
         VeArtProxy.Config memory cfg = _setupFuzz(lineCount, seed1, seed2, seed3);
 
-        for (int256 l = 0; l < cfg.maxLines; l++) {
+        for (int64 l = 0; l < cfg.maxLines; l++) {
             VeArtProxy.Point[100] memory Line = artProxy.circles(cfg, l);
 
             for (uint256 i = 0; i < 100; i++) {
@@ -100,7 +100,7 @@ contract VeArtProxyTest is BaseTest {
         bool lineAppears;
         VeArtProxy.Config memory cfg = _setupFuzz(lineCount, seed1, 1, 1);
 
-        for (int256 l = 0; l < cfg.maxLines; l++) {
+        for (int32 l = 0; l < cfg.maxLines; l++) {
             VeArtProxy.Point[100] memory Line = artProxy.corners(cfg, l);
 
             for (uint256 i = 0; i < 100; i++) {
