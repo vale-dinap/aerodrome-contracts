@@ -1,101 +1,133 @@
-# Protocol
+# Aerodrome Finance (Constant Product) – Compatibility Layer
 
-All contracts for the Protocol, an AMM on EVMs inspired by Solidly.
+## Overview
+This repository contains a fork of the [Aerodrome Contracts](https://github.com/aerodrome-finance/contracts) protocol, designed to ensure compatibility with the latest Solidity versions. The primary focus of this fork is to facilitate interaction and integration testing with external smart contracts, while avoiding any modifications to the core logic of Aerodrome, aside from necessary adjustments for Solidity compiler compatibility.
 
-See `SPECIFICATION.md` for more detail.
+## Purpose
+This compatibility layer has been created with two goals in mind:
+- **Ensure Compatibility**: Update the Aerodrome Contracts to work seamlessly with Solidity 0.8.x and newer versions, ensuring that external projects do not face version incompatibility issues.
+- **Enable Testing**: Provide an environment where developers can test their smart contracts against the Aerodrome protocol, using modern Solidity tooling, without needing to modify the protocol's fundamental behavior.
 
-## Protocol Overview
+## What’s Included
+The repository includes:
+- All the smart contracts and libraries originally included in Aerodrome.
+- Updates for compatibility with Solidity 0.8.x and above.
+- Optimized stack usage to prevent errors at compile time. This required substantial refactoring of some parts of the codebase.
+- Minor gas optimizations.
 
-### AMM contracts
+## What’s Not Changed
+To maintain the integrity of the original protocol:
+- No changes have been made to the core logic or functionality of Aerodrome Contracts, except for those required to ensure compatibility with newer Solidity compiler versions and prevent compiler errors.
+- The operational and fee structures remain the same as in the original Aerodrome Contracts.
 
-| Filename | Description |
-| --- | --- |
-| `Pool.sol` | AMM constant-product implementation similar to Uniswap V2 liquidity pools |
-| `Router.sol` | Handles multi-pool swaps, deposit/withdrawal, similar to Uniswap V2 Router interface |
-| `PoolFees.sol` | Stores the liquidity pool trading fees, these are kept separate from the reserves |
-| `ProtocolLibrary.sol` | Provides router-related helpers, eg. for price-impact calculations |
-| `FactoryRegistry.sol` | Registry of factories approved for creation of pools, gauges, bribes and managed rewards. |
+## Directory Structure
+A high-level overview of the project structure (Solidity files only):
 
-### Tokenomy contracts
+🔷 Blue diamond: Contracts and libraries
 
-| Filename | Description |
-| --- | --- |
-| `Aero.sol` | Protocol ERC20 token |
-| `VotingEscrow.sol` | Protocol ERC-721 (ve)NFT representing the protocol vote-escrow lock. Beyond standard ve-type functions, there is also the ability to merge, split and create managed nfts. |
-| `Minter.sol` | Protocol token minter. Distributes emissions to `Voter.sol` and rebases to `RewardsDistributor.sol`. |
-| `RewardsDistributor.sol` | Is used to handle the rebases distribution for (ve)NFTs/lockers. |
-| `VeArtProxy.sol` | (ve)NFT art proxy contract, exists for upgradability purposes |
-| `AirdropDistributor.sol` | Distributes permanently locked (ve)NFTs to the provided addresses, in the desired amounts. |
-
-### Protocol mechanics contracts
-
-| Filename | Description |
-| --- | --- |
-| `Voter.sol` | Handles votes for the current epoch, gauge and voting reward creation as well as emission distribution to `Gauge.sol` contracts. |
-| `Gauge.sol` | Gauges are attached to a Pool and based on the (ve)NFT votes it receives, it distributes proportional emissions in the form of protocol tokens. Deposits to the gauge take the form of LP tokens for the Pool. In exchange for receiving protocol emissions, claims on fees from the pool are relinquished to the gauge. Standard rewards contract. |
-| `rewards/` | |
-| `Reward.sol` | Base reward contract to be inherited for distribution of rewards to stakers.
-| `VotingReward.sol` | Rewards contracts used by `FeesVotingReward.sol` and `BribeVotingReward.sol` which inherits `Reward.sol`. Rewards are distributed in the following epoch proportionally based on the last checkpoint created by the user, and are earned through "voting" for a pool or gauge. |
-| `FeesVotingReward.sol` | Stores LP fees (from the gauge via `PoolFees.sol`) to be distributed for the current voting epoch to it's voters. |
-| `BribeVotingReward.sol` | Stores the users/externally provided rewards for the current voting epoch to it's voters. These are deposited externally every week. |
-| `ManagedReward.sol` | Staking implementation for managed veNFTs used by `LockedManagedReward.sol` and `FreeManagedReward.sol` which inherits `Reward.sol`.  Rewards can be earned passively by veNFTs who delegate their voting power to a "managed" veNFT.
-| `LockedManagedReward.sol` | Handles "locked" rewards (i.e. Aero rewards / rebases that are compounded) for managed NFTs. Rewards are not distributed and only returned to `VotingEscrow.sol` when the user withdraws from the managed NFT. | 
-| `FreeManagedReward.sol` | Handles "free" (i.e. unlocked) rewards for managed NFTs. Any rewards earned by a managed NFT that a manager passes on will be distributed to the users that deposited into the managed NFT. | 
-
-### Governance contracts
-
-| Filename | Description |
-| --- | --- |
-| `ProtocolGovernor.sol` | OpenZeppelin's Governor contracts used in protocol-wide access control to whitelist tokens for trade  within the protocol, update minting emissions, and create managed veNFTs. |
-| `EpochGovernor.sol` | A simple epoch-based governance contract used exclusively for adjusting emissions. |
-
-
-## Testing
-
-This repository uses Foundry for testing and deployment. 
-
-Foundry Setup
-
+🔶 Orange diamond: Interfaces
+```bash
+📦contracts
+┣ 📂art
+┃ ┣ 🔷BokkyPooBahsDateTimeLibrary.sol
+┃ ┣ 🔷PerlinNoise.sol
+┃ ┗ 🔷Trig.sol
+┣ 📂factories
+┃ ┣ 🔷FactoryRegistry.sol
+┃ ┣ 🔷GaugeFactory.sol
+┃ ┣ 🔷ManagedRewardsFactory.sol
+┃ ┣ 🔷PoolFactory.sol
+┃ ┗ 🔷VotingRewardsFactory.sol
+┣ 📂gauges
+┃ ┗ 🔷Gauge.sol
+┣ 📂governance
+┃ ┣ 🔷GovernorCountingMajority.sol
+┃ ┣ 🔷GovernorSimple.sol
+┃ ┣ 🔷GovernorSimpleVotes.sol
+┃ ┣ 🔶IGovernor.sol
+┃ ┣ 🔶IVetoGovernor.sol
+┃ ┣ 🔶IVotes.sol
+┃ ┣ 🔷VetoGovernor.sol
+┃ ┣ 🔷VetoGovernorCountingSimple.sol
+┃ ┣ 🔷VetoGovernorVotes.sol
+┃ ┗ 🔷VetoGovernorVotesQuorumFraction.sol
+┣ 📂interfaces
+┃ ┣ 📂factories
+┃ ┃ ┣ 🔶IFactoryRegistry.sol
+┃ ┃ ┣ 🔶IGaugeFactory.sol
+┃ ┃ ┣ 🔶IManagedRewardsFactory.sol
+┃ ┃ ┣ 🔶IPoolFactory.sol
+┃ ┃ ┗ 🔶IVotingRewardsFactory.sol
+┃ ┣ 🔶IAero.sol
+┃ ┣ 🔶IAirdropDistributor.sol
+┃ ┣ 🔶IEpochGovernor.sol
+┃ ┣ 🔶IGauge.sol
+┃ ┣ 🔶IMinter.sol
+┃ ┣ 🔶IPool.sol
+┃ ┣ 🔶IPoolCallee.sol
+┃ ┣ 🔶IReward.sol
+┃ ┣ 🔶IRewardsDistributor.sol
+┃ ┣ 🔶IRouter.sol
+┃ ┣ 🔶IVeArtProxy.sol
+┃ ┣ 🔶IVoter.sol
+┃ ┣ 🔶IVotingEscrow.sol
+┃ ┗ 🔶IWETH.sol
+┣ 📂libraries
+┃ ┣ 🔷BalanceLogicLibrary.sol
+┃ ┣ 🔷DelegationLogicLibrary.sol
+┃ ┣ 🔷ProtocolTimeLibrary.sol
+┃ ┗ 🔷SafeCastLibrary.sol
+┣ 📂rewards
+┃ ┣ 🔷BribeVotingReward.sol
+┃ ┣ 🔷FeesVotingReward.sol
+┃ ┣ 🔷FreeManagedReward.sol
+┃ ┣ 🔷LockedManagedReward.sol
+┃ ┣ 🔷ManagedReward.sol
+┃ ┣ 🔷Reward.sol
+┃ ┗ 🔷VotingReward.sol
+┣ 🔷Aero.sol
+┣ 🔷AirdropDistributor.sol
+┣ 🔷EpochGovernor.sol
+┣ 🔷Minter.sol
+┣ 🔷Pool.sol
+┣ 🔷PoolFees.sol
+┣ 🔷ProtocolForwarder.sol
+┣ 🔷ProtocolGovernor.sol
+┣ 🔷RewardsDistributor.sol
+┣ 🔷Router.sol
+┣ 🔷VeArtProxy.sol
+┣ 🔷Voter.sol
+┗ 🔷VotingEscrow.sol
 ```
-forge install
+
+## Installation
+To use this compatibility layer for testing or integrating external projects:
+
+### 1. Clone the Repository:
+```bash
+git clone https://github.com/vale-dinap/aerodrome-contracts.git
+```
+
+### 2. Install Dependencies:
+Make sure you have installed the necessary dependencies by running:
+```bash
+yarn install
+```
+
+### 3. Compile Contracts:
+Ensure the Solidity compiler version is compatible with the updated contracts:
+```bash
 forge build
+```
+
+### 4. Run Tests:
+Test the contracts using Foundry or your preferred testing framework:
+```bash
 forge test
 ```
 
-## Base Mainnet Fork Tests
+## Contributing
+Contributions are welcome, especially those that improve compatibility or testing capabilities. Please open an issue or a pull request if you encounter bugs or have suggestions for improvements.
 
-In order to run mainnet fork tests against base, inherit `BaseTest` in `BaseTest.sol` in your new class and set the `deploymentType` variable to `Deployment.FORK`. The `BASE_RPC_URL` field must be set in `.env`. Optionally, `BLOCK_NUMBER` can be set in the `.env` file or in the test file if you wish to test against a consistent fork state (this will make tests faster).
-
-
-## Lint
-
-`yarn format` to run prettier.
-
-`yarn lint` to run solhint (currently disabled in CI).
-
-## Deployment
-
-See `script/README.md` for more detail.
-
-### Access Control
-See `PERMISSIONS.md` for more detail.
-
-## Deployment
-
-| Name               | Address                                                                                                                               |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| ArtProxy               | [0xE9992487b2EE03b7a91241695A58E0ef3654643E](https://basescan.org/address/0xE9992487b2EE03b7a91241695A58E0ef3654643E#code) |
-| RewardsDistributor               | [0x227f65131A261548b057215bB1D5Ab2997964C7d](https://basescan.org/address/0x227f65131A261548b057215bB1D5Ab2997964C7d#code) |
-| FactoryRegistry               | [0x5C3F18F06CC09CA1910767A34a20F771039E37C0](https://basescan.org/address/0x5C3F18F06CC09CA1910767A34a20F771039E37C0#code) |
-| Forwarder               | [0x15e62707FCA7352fbE35F51a8D6b0F8066A05DCc](https://basescan.org/address/0x15e62707FCA7352fbE35F51a8D6b0F8066A05DCc#code) |
-| GaugeFactory               | [0x35f35cA5B132CaDf2916BaB57639128eAC5bbcb5](https://basescan.org/address/0x35f35cA5B132CaDf2916BaB57639128eAC5bbcb5#code) |
-| ManagedRewardsFactory               | [0xFdA1fb5A2a5B23638C7017950506a36dcFD2bDC3](https://basescan.org/address/0xFdA1fb5A2a5B23638C7017950506a36dcFD2bDC3#code) |
-| Minter               | [0xeB018363F0a9Af8f91F06FEe6613a751b2A33FE5](https://basescan.org/address/0xeB018363F0a9Af8f91F06FEe6613a751b2A33FE5#code) |
-| PoolFactory               | [0x420DD381b31aEf6683db6B902084cB0FFECe40Da](https://basescan.org/address/0x420DD381b31aEf6683db6B902084cB0FFECe40Da#code) |
-| Router               | [0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43](https://basescan.org/address/0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43#code) |
-| AERO               | [0x940181a94A35A4569E4529A3CDfB74e38FD98631](https://basescan.org/address/0x940181a94A35A4569E4529A3CDfB74e38FD98631#code) |
-| Voter               | [0x16613524e02ad97eDfeF371bC883F2F5d6C480A5](https://basescan.org/address/0x16613524e02ad97eDfeF371bC883F2F5d6C480A5#code) |
-| VotingEscrow               | [0xeBf418Fe2512e7E6bd9b87a8F0f294aCDC67e6B4](https://basescan.org/address/0xeBf418Fe2512e7E6bd9b87a8F0f294aCDC67e6B4#code) |
-| VotingRewardsFactory               | [0x45cA74858C579E717ee29A86042E0d53B252B504](https://basescan.org/address/0x45cA74858C579E717ee29A86042E0d53B252B504#code) |
-| Pool               | [0xA4e46b4f701c62e14DF11B48dCe76A7d793CD6d7](https://basescan.org/address/0xA4e46b4f701c62e14DF11B48dCe76A7d793CD6d7#code) |
-
+## License
+This project is licensed under the same terms as the original Aerodrome Contracts. All rights to the original Aerodrome Contracts code remain with [Aerodrome Finance](https://aerodrome.finance/).
