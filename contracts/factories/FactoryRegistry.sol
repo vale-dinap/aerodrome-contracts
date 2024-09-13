@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {Ownable} from "@openzeppelin_/contracts/access/Ownable.sol";
 import {IFactoryRegistry} from "../interfaces/factories/IFactoryRegistry.sol";
-import {EnumerableSet} from "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
+import {EnumerableSet} from "@openzeppelin_/contracts/utils/structs/EnumerableSet.sol";
 
 /// @title Protocol Factory Registry
 /// @author Carter Carlson (@pegahcarter)

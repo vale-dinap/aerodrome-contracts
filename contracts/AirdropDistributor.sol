@@ -3,9 +3,9 @@ pragma solidity >=0.8.0;
 
 import {IAero} from "./interfaces/IAero.sol";
 import {IVotingEscrow} from "./interfaces/IVotingEscrow.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {Ownable} from "@openzeppelin_/contracts/access/Ownable.sol";
 import {IAirdropDistributor} from "./interfaces/IAirdropDistributor.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {SafeERC20} from "@openzeppelin_/contracts/token/ERC20/utils/SafeERC20.sol";
 
 contract AirdropDistributor is IAirdropDistributor, Ownable {
     using SafeERC20 for IAero;

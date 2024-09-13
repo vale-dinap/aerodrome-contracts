@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {Math} from "@openzeppelin_/contracts/utils/math/Math.sol";
 import {IPool} from "./interfaces/IPool.sol";
 import {IVoter} from "./interfaces/IVoter.sol";
 import {IPoolCallee} from "./interfaces/IPoolCallee.sol";
 import {IPoolFactory} from "./interfaces/factories/IPoolFactory.sol";
 import {PoolFees} from "./PoolFees.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
-import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import {SafeERC20} from "@openzeppelin_/contracts/token/ERC20/utils/SafeERC20.sol";
+import {ERC20} from "@openzeppelin_/contracts/token/ERC20/ERC20.sol";
+import {IERC20} from "@openzeppelin_/contracts/token/ERC20/IERC20.sol";
+import {ERC20Permit} from "@openzeppelin_/contracts/token/ERC20/extensions/ERC20Permit.sol";
+import {ReentrancyGuard} from "@openzeppelin_/contracts/security/ReentrancyGuard.sol";
 
 /// @title Pool
 /// @author velodrome.finance, @figs999, @pegahcarter

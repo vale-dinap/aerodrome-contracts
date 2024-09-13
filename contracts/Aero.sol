@@ -2,8 +2,8 @@
 pragma solidity >=0.8.0;
 
 import {IAero} from "./interfaces/IAero.sol";
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
+import {ERC20} from "@openzeppelin_/contracts/token/ERC20/ERC20.sol";
+import {ERC20Permit} from "@openzeppelin_/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /// @title Aero
 /// @author velodrome.finance

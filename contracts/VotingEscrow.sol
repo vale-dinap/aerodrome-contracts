@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import {IERC721Receiver} from "@openzeppelin_/contracts/token/ERC721/IERC721Receiver.sol";
 import {IVeArtProxy} from "./interfaces/IVeArtProxy.sol";
 import {IVotingEscrow} from "./interfaces/IVotingEscrow.sol";
 import {IVoter} from "./interfaces/IVoter.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {IERC6372} from "@openzeppelin/contracts/interfaces/IERC6372.sol";
+import {IERC20} from "@openzeppelin_/contracts/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@openzeppelin_/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC6372} from "@openzeppelin_/contracts/interfaces/IERC6372.sol";
 import {IReward} from "./interfaces/IReward.sol";
 import {IFactoryRegistry} from "./interfaces/factories/IFactoryRegistry.sol";
 import {IManagedRewardsFactory} from "./interfaces/factories/IManagedRewardsFactory.sol";
-import {ERC2771Context} from "@openzeppelin/contracts/metatx/ERC2771Context.sol";
-import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import {ERC2771Context} from "@openzeppelin_/contracts/metatx/ERC2771Context.sol";
+import {ReentrancyGuard} from "@openzeppelin_/contracts/security/ReentrancyGuard.sol";
 import {DelegationLogicLibrary} from "./libraries/DelegationLogicLibrary.sol";
 import {BalanceLogicLibrary} from "./libraries/BalanceLogicLibrary.sol";
 import {SafeCastLibrary} from "./libraries/SafeCastLibrary.sol";

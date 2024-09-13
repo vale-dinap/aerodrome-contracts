@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ERC20} from "@openzeppelin_/contracts/token/ERC20/ERC20.sol";
 
 /// @dev MockERC20 contract where there is a fee in transfer for testing use only
 contract MockERC20WithTransferFee is ERC20 {

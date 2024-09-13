@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {IERC165} from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import {IERC6372} from "@openzeppelin/contracts/interfaces/IERC6372.sol";
+import {IERC165} from "@openzeppelin_/contracts/utils/introspection/ERC165.sol";
+import {IERC6372} from "@openzeppelin_/contracts/interfaces/IERC6372.sol";
 
 /**
  * @dev Taken from OpenZeppelin's IGovernor. Excludes `cancel`.

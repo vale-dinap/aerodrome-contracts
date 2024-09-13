@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity >=0.8.0;
 
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@openzeppelin_/contracts/token/ERC20/IERC20.sol";
 import {Gauge} from "contracts/gauges/Gauge.sol";
 
 contract TestOwner {

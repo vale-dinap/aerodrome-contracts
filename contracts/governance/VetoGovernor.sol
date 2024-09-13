@@ -3,16 +3,16 @@
 
 pragma solidity ^0.8.0;
 
-import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-import {IERC1155Receiver} from "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
-import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
-import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
-import {ERC165, IERC165} from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import {IERC6372} from "@openzeppelin/contracts/interfaces/IERC6372.sol";
-import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
-import {DoubleEndedQueue} from "@openzeppelin/contracts/utils/structs/DoubleEndedQueue.sol";
-import {Address} from "@openzeppelin/contracts/utils/Address.sol";
-import {Context} from "@openzeppelin/contracts/utils/Context.sol";
+import {IERC721Receiver} from "@openzeppelin_/contracts/token/ERC721/IERC721Receiver.sol";
+import {IERC1155Receiver} from "@openzeppelin_/contracts/token/ERC1155/IERC1155Receiver.sol";
+import {ECDSA} from "@openzeppelin_/contracts/utils/cryptography/ECDSA.sol";
+import {EIP712} from "@openzeppelin_/contracts/utils/cryptography/EIP712.sol";
+import {ERC165, IERC165} from "@openzeppelin_/contracts/utils/introspection/ERC165.sol";
+import {IERC6372} from "@openzeppelin_/contracts/interfaces/IERC6372.sol";
+import {SafeCast} from "@openzeppelin_/contracts/utils/math/SafeCast.sol";
+import {DoubleEndedQueue} from "@openzeppelin_/contracts/utils/structs/DoubleEndedQueue.sol";
+import {Address} from "@openzeppelin_/contracts/utils/Address.sol";
+import {Context} from "@openzeppelin_/contracts/utils/Context.sol";
 import "./IVetoGovernor.sol";
 
 /**

@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0;
 
 import {IWETH} from "contracts/interfaces/IWETH.sol";
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ERC20} from "@openzeppelin_/contracts/token/ERC20/ERC20.sol";
 
 /// @dev Modified lightly from live deployed WETH contract as WETH9 is not a standard ERC20
 contract MockWETH is IWETH {

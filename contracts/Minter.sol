@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.0;
 
-import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {Math} from "@openzeppelin_/contracts/utils/math/Math.sol";
 import {IMinter} from "./interfaces/IMinter.sol";
 import {IRewardsDistributor} from "./interfaces/IRewardsDistributor.sol";
 import {IAero} from "./interfaces/IAero.sol";
 import {IVoter} from "./interfaces/IVoter.sol";
 import {IVotingEscrow} from "./interfaces/IVotingEscrow.sol";
 import {IEpochGovernor} from "./interfaces/IEpochGovernor.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {SafeERC20} from "@openzeppelin_/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /// @title Minter
 /// @author velodrome.finance, @figs999, @pegahcarter

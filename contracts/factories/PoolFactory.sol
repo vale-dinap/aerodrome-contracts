@@ -3,7 +3,7 @@ pragma solidity >=0.8.0;
 
 import {IPoolFactory} from "../interfaces/factories/IPoolFactory.sol";
 import {IPool} from "../interfaces/IPool.sol";
-import {Clones} from "@openzeppelin/contracts/proxy/Clones.sol";
+import {Clones} from "@openzeppelin_/contracts/proxy/Clones.sol";
 
 contract PoolFactory is IPoolFactory {
     address public immutable implementation;

@@ -2,9 +2,9 @@
 pragma solidity >=0.8.0;
 
 import "./BaseTest.sol";
-import {IGovernor as OZGovernor} from "@openzeppelin/contracts/governance/IGovernor.sol";
-import {IERC6372} from "@openzeppelin/contracts/interfaces/IERC6372.sol";
-import {IERC1155Receiver} from "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import {IGovernor as OZGovernor} from "@openzeppelin_/contracts/governance/IGovernor.sol";
+import {IERC6372} from "@openzeppelin_/contracts/interfaces/IERC6372.sol";
+import {IERC1155Receiver} from "@openzeppelin_/contracts/token/ERC1155/IERC1155Receiver.sol";
 import {IGovernor} from "contracts/governance/IGovernor.sol";
 
 contract EpochGovernorTest is BaseTest {

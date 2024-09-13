@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0;
 
 import "./ExtendedBaseTest.sol";
-import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import {Strings} from "@openzeppelin_/contracts/utils/Strings.sol";
 
 contract MinterTestFlow is ExtendedBaseTest {
     event Mint(address indexed _sender, uint256 _weekly, uint256 _circulating_supply, bool indexed _tail);

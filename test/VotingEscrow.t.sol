@@ -2,9 +2,9 @@
 pragma solidity >=0.8.0;
 
 import "./BaseTest.sol";
-import {IERC165} from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import {IERC721, IERC721Metadata} from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC6372} from "@openzeppelin/contracts/interfaces/IERC6372.sol";
+import {IERC165} from "@openzeppelin_/contracts/utils/introspection/ERC165.sol";
+import {IERC721, IERC721Metadata} from "@openzeppelin_/contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import {IERC6372} from "@openzeppelin_/contracts/interfaces/IERC6372.sol";
 
 contract VotingEscrowTest is BaseTest {
     event DelegateChanged(address indexed delegator, uint256 indexed fromDelegate, uint256 indexed toDelegate);
